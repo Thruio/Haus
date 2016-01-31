@@ -1,0 +1,37 @@
+
+redis:
+  image: redis
+
+mysql:
+  image: mysql
+  environment:
+    - MYSQL_ROOT_PASSWORD=X4A140d0kmgedUl
+    - MYSQL_USER=ziggg
+    - MYSQL_PASSWORD=nZo61RO06Jh844n
+    - MYSQL_DATABASE=ziggg
+
+
+haproxy:
+  image: 'tutum/haproxy:latest'
+  environment:
+    - 'STATS_AUTH=stats:CaptainMorgan'
+  #links:
+  #  - chat-service
+  #  - user-service
+  ports:
+    - '80:80'
+    - '3443:443'
+    - '1936:1936'
+
+
+mon-lights-philips:
+  build: mon/lights/philips
+  volumes:
+    - "./mon/lights/philips/app:/src"
+  links:
+    - redis
+  environment:
+    - 'COOKIE=SERVERID insert indirect nocache'
+    - 'VIRTUAL_HOST=zig.gg.dev'
+    - 'BALANCE=leastconn'
+    - 'HUE_IP=GreyHue.lan'
