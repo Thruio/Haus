@@ -1,4 +1,4 @@
-FROM node:0.10.38
+FROM node:5.5
 
 RUN apt-get update -qq && \
     apt-get -yq install \
@@ -14,5 +14,7 @@ ADD . /src
 RUN cd /src; npm install
 
 EXPOSE 80
+
+RUN node -v
 
 CMD ["npm", "start"]

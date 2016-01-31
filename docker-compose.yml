@@ -10,7 +10,6 @@ mysql:
     - MYSQL_PASSWORD=nZo61RO06Jh844n
     - MYSQL_DATABASE=ziggg
 
-
 haproxy:
   image: 'tutum/haproxy:latest'
   environment:
@@ -19,7 +18,7 @@ haproxy:
   #  - chat-service
   #  - user-service
   ports:
-    - '80:80'
+    - '3480:80'
     - '3443:443'
     - '1936:1936'
 
@@ -27,7 +26,7 @@ haproxy:
 mon-lights-philips:
   build: mon/lights/philips
   volumes:
-    - "./mon/lights/philips/app:/src"
+    - "./mon/lights/philips:/src"
   links:
     - redis
   environment:

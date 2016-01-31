@@ -1,2 +1,3 @@
 .idea
 mon/lights/philips/node_modules
+mon/lights/philips/*.log
